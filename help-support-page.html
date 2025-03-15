@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - AI Chat Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f1729;
+            --bg-secondary: #1a2742;
+            --text-primary: #e6eaf4;
+            --text-secondary: #8f9cb3;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .help-support-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav-item {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-nav-item:hover {
+            background-color: var(--bg-primary);
+        }
+
+        .sidebar-nav-item.active {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+        }
+
+        .sidebar-nav-icon {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .content {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .support-card {
+            background-color: var(--bg-primary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .support-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .support-content {
+            flex-grow: 1;
+        }
+
+        .support-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .support-description {
+            color: var(--text-secondary);
+        }
+
+        .support-action {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .support-action:hover {
+            transform: translateY(-2px);
+        }
+
+        .faq-section {
+            margin-top: 30px;
+        }
+
+        .faq-item {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .faq-question {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            display: none;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-primary);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-submit {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="help-support-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item active">
+                    <span class="sidebar-nav-icon">📖</span>
+                    Support Hub
+                </li>
+                <li class="sidebar-nav-item">
+                    <span class="sidebar-nav-icon">❓</span>
+                    Frequently Asked Questions
+                </li>
+                <li class="sidebar-nav-item">
+                    <span class="sidebar-nav-icon">🤖</span>
+                    AI Room Support
+                </li>
+                <li class="sidebar-nav-item">
+                    <span class="sidebar-nav-icon">🛡️</span>
+                    Safety & Moderation
+                </li>
+                <li class="sidebar-nav-item">
+                    <span class="sidebar-nav-icon">📞</span>
+                    Contact Us
+                </li>
+            </ul>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <h1 class="section-title">Support Hub</h1>
+
+            <!-- Support Cards -->
+            <div class="support-card">
+                <div class="support-icon">🤖</div>
+                <div class="support-content">
+                    <h3 class="support-title">AI Room Guidance</h3>
+                    <p class="support-description">
+                        Learn how to maximize your experience with AI-powered chat rooms, 
+                        understand AI assistant capabilities, and get tips for productive interactions.
+                    </p>
+                    <button class="support-action">Learn More</button>
+                </div>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">🛡️</div>
+                <div class="support-content">
+                    <h3 class="support-title">Community Guidelines</h3>
+                    <p class="support-description">
+                        Understand our platform's standards, safety protocols, and 
+                        how we maintain a respectful and innovative chatting environment.
+                    </p>
+                    <button class="support-action">View Guidelines</button>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do AI assistants work in chat rooms?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        AI assistants in our chat rooms are designed to enhance conversations 
+                        by providing context-aware insights, helping to maintain discussion focus, 
+                        and offering intelligent suggestions based on the room's topic and conversation flow.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I customize my AI assistant?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! You can choose from different AI personalities and adjust 
+                        the interaction depth in your account settings. This allows you to 
+                        tailor the AI experience to your preferences.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How are rooms moderated?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our rooms are moderated through a combination of AI monitoring 
+                        and human oversight. The AI helps flag potentially inappropriate 
+                        content, while room creators and designated moderators can take 
+                        additional actions to maintain a positive environment.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-section">
+                <h2 class="section-title">Contact Support</h2>
+                <form class="contact-form">
+                    <input type="text" class="form-input" placeholder="Your Name" required>
+                    <input type="email" class="form-input" placeholder="Your Email" required>
+                    <select class="form-input">
+                        <option>Select Support Category</option>
+                        <option>Technical Issue</option>
+                        <option>Billing</option>
+                        <option>AI Assistance</option>
+                        <option>Other</option>
+                    </select>
+                    <textarea class="form-input" rows="5" placeholder="Describe your issue" required></textarea>
+                    <button type="submit" class="form-submit">Submit Support Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Interaction
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>

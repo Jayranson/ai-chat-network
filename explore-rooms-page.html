@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Rooms - AI Chat Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f1729;
+            --bg-secondary: #1a2742;
+            --text-primary: #e6eaf4;
+            --text-secondary: #8f9cb3;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .explore-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .search-filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 12px;
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        .filter-dropdown {
+            padding: 12px;
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .room-card {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59,130,246,0.2);
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .room-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .room-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .room-tag {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+        }
+
+        .room-description {
+            flex-grow: 1;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .room-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .room-members {
+            display: flex;
+            align-items: center;
+        }
+
+        .member-avatars {
+            display: flex;
+            margin-right: 10px;
+        }
+
+        .member-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            margin-right: -10px;
+            border: 2px solid var(--bg-secondary);
+        }
+
+        .join-room-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .join-room-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .category-tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .category-tab.active {
+            color: var(--text-primary);
+        }
+
+        .category-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        }
+    </style>
+</head>
+<body>
+    <div class="explore-container">
+        <div class="page-header">
+            <h1 class="page-title">Explore Rooms</h1>
+        </div>
+
+        <div class="search-filter-container">
+            <input type="text" class="search-input" placeholder="Search rooms...">
+            <select class="filter-dropdown">
+                <option>All Categories</option>
+                <option>Technology</option>
+                <option>Science</option>
+                <option>Art & Creativity</option>
+                <option>Philosophy</option>
+            </select>
+        </div>
+
+        <div class="category-tabs">
+            <div class="category-tab active">All Rooms</div>
+            <div class="category-tab">Trending</div>
+            <div class="category-tab">Recommended</div>
+            <div class="category-tab">New</div>
+        </div>
+
+        <div class="rooms-grid">
+            <!-- Room Card 1 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <h2 class="room-name">AI Frontier Discussions</h2>
+                </div>
+                <div class="room-tags">
+                    <span class="room-tag">Technology</span>
+                    <span class="room-tag">AI Research</span>
+                </div>
+                <p class="room-description">
+                    A deep dive into the cutting-edge advancements in artificial intelligence, 
+                    exploring ethical implications, technological breakthroughs, and future possibilities.
+                </p>
+                <div class="room-stats">
+                    <div class="room-members">
+                        <div class="member-avatars">
+                            <div class="member-avatar">JD</div>
+                            <div class="member-avatar">EK</div>
+                            <div class="member-avatar">+12</div>
+                        </div>
+                        <span>15 Members</span>
+                    </div>
+                    <span>Public Room</span>
+                </div>
+                <button class="join-room-btn">Join Room</button>
+            </div>
+
+            <!-- Room Card 2 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <h2 class="room-name">Machine Learning Mastery</h2>
+                </div>
+                <div class="room-tags">
+                    <span class="room-tag">Data Science</span>
+                    <span class="room-tag">Learning</span>
+                </div>
+                <p class="room-description">
+                    An interactive learning space for data scientists and machine learning enthusiasts. 
+                    Share projects, discuss algorithms, and collaborate on innovative solutions.
+                </p>
+                <div class="room-stats">
+                    <div class="room-members">
+                        <div class="member-avatars">
+                            <div class="member-avatar">MR</div>
+                            <div class="member-avatar">SL</div>
+                            <div class="member-avatar">+8</div>
+                        </div>
+                        <span>10 Members</span>
+                    </div>
+                    <span>Private Room</span>
+                </div>
+                <button class="join-room-btn">Request Access</button>
+            </div>
+
+            <!-- Room Card 3 -->
+            <div class="room-card">
+                <div class="room-header">
+                    <h2 class="room-name">Creative AI Playground</h2>
+                </div>
+                <div class="room-tags">
+                    <span class="room-tag">Art</span>
+                    <span class="room-tag">Innovation</span>
+                </div>
+                <p class="room-description">
+                    A collaborative space for artists, designers, and AI enthusiasts to explore 
+                    the intersection of creativity and artificial intelligence.
+                </p>
+                <div class="room-stats">
+                    <div class="room-members">
+                        <div class="member-avatars">
+                            <div class="member-avatar">AK</div>
+                            <div class="member-avatar">RJ</div>
+                            <div class="member-avatar">+5</div>
+                        </div>
+                        <span>7 Members</span>
+                    </div>
+                    <span>Public Room</span>
+                </div>
+                <button class="join-room-btn">Join Room</button>
+            </div>
+
+            <!-- More Room Cards... -->
+            <div class="room-card">
+                <div class="room-header">
+                    <h2 class="room-name">Philosophical AI Ethics</h2>
+                </div>
+                <div class="room-tags">
+                    <span class="room-tag">Philosophy</span>
+                    <span class="room-tag">Ethics</span>
+                </div>
+                <p class="room-description">
+                    Exploring the profound philosophical questions surrounding artificial intelligence, 
+                    its impact on society, and the ethical considerations of emerging technologies.
+                </p>
+                <div class="room-stats">
+                    <div class="room-members">
+                        <div class="member-avatars">
+                            <div class="member-avatar">PH</div>
+                            <div class="member-avatar">LM</div>
+                            <div class="member-avatar">+3</div>
+                        </div>
+                        <span>5 Members</span>
+                    </div>
+                    <span>Public Room</span>
+                </div>
+                <button class="join-room-btn">Join Room</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
